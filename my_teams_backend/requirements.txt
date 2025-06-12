@@ -1,0 +1,4 @@
+django
+djangorestframework
+uwsgi
+django-cors-headers
