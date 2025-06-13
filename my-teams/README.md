@@ -38,6 +38,7 @@ The Frontend one will be under the `my-teams` folder
 Within the project folder, run the following command to install the dependencies
 
 ```bash
+cd my-teams
 yarn install
 ```
 

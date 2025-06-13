@@ -2,3 +2,4 @@ django
 djangorestframework
 uwsgi
 django-cors-headers
+django-environ
