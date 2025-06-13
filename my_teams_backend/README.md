@@ -66,4 +66,7 @@ python manage.py runserver
 
 
 ## Database ER Diagram
-![ER Diagram](docs/MyTeamsER.png)
+
+<div align="center">
+  <img src="docs/MyTeamsER.png" width="50%">
+</div>
