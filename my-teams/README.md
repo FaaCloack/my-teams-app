@@ -3,6 +3,8 @@
 A simple React-based frontend for managing team members.  
 Users can view, add, edit, and delete members through a user-friendly interface. This app communicates with a Django REST API backend.
 
+![My Teams App](docs/my-teams-app.png)
+
 
 ## Technologies Used
 
@@ -48,7 +50,7 @@ Set your API URL in a `.env` file in the project root:
 
 ```env
 VITE_API_URL=http://localhost:8000/api/
-
+```
 
 ### Run the development server
 
