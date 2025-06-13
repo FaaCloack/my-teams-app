@@ -2,6 +2,7 @@ from teams.serializers import TeamSerializer
 from teams.models import Team
 from rest_framework import serializers
 from members.models import Member, Role
+import re
 
 
 class RoleSerializer(serializers.ModelSerializer):
@@ -43,3 +44,11 @@ class MemberSerializer(serializers.ModelSerializer):
             # defaults to the first team
             validated_data["team_id"] = Team.objects.first().id
         return validated_data
+    
+    def validate_phone(self, phone):
+        phone_regex = re.compile(r'^\+?1?\d{9,15}$')
+        if not phone_regex.match(phone):
+            raise serializers.ValidationError("Invalid phone number format.")
+        if len(phone) != 10:
+            raise serializers.ValidationError("Invalid phone number lenght.")
+        return phone
