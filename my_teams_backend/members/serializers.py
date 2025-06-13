@@ -1,4 +1,3 @@
-# members/serializers.py
 from teams.serializers import TeamSerializer
 from teams.models import Team
 from rest_framework import serializers
