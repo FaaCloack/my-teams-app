@@ -11,6 +11,8 @@ import {
 } from "@heroui/react";
 import { useNavigate } from "react-router-dom";
 
+import ErrorState from "../errorState";
+
 import { title } from "@/components/primitives";
 import { useMembers } from "@/hooks/members";
 import DefaultLayout from "@/layouts/default";
@@ -44,24 +46,13 @@ function MembersTable({
   members?: Member[];
   onSelectMember: (id: number) => void;
 }) {
-  if (!members || members.length == 0) {
-    return (
-      <Table aria-label="Members empty table">
-        <TableHeader>
-          <TableColumn>Members</TableColumn>
-        </TableHeader>
-        <TableBody emptyContent={"No rows to display."}>{[]}</TableBody>
-      </Table>
-    );
-  }
-
   return (
     <Table hideHeader aria-label="Members table" selectionMode="single">
       <TableHeader>
         <TableColumn>Members</TableColumn>
       </TableHeader>
-      <TableBody>
-        {members.map((member) => (
+      <TableBody emptyContent={"No rows to display."} items={members}>
+        {(member) => (
           <TableRow key={member.id} onClick={() => onSelectMember(member.id)}>
             <TableCell>
               <User
@@ -77,19 +68,19 @@ function MembersTable({
                 name={formatMemberName(
                   member.name,
                   member.lastname,
-                  member.role
+                  member.role,
                 )}
               />
             </TableCell>
           </TableRow>
-        ))}
+        )}
       </TableBody>
     </Table>
   );
 }
 
 export default function MembersList() {
-  const { data: members, isLoading } = useMembers();
+  const { data: members, isLoading, isLoadingError, isError } = useMembers();
   const membersNum = members?.length;
   const subtitle = `You have ${membersNum} team members`;
   const navigate = useNavigate();
@@ -97,6 +88,14 @@ export default function MembersList() {
   const onSelectMember = (id: number) => {
     navigate(`/members/${id}`);
   };
+
+  if (isLoadingError || isError) {
+    return (
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+        <ErrorState />
+      </section>
+    );
+  }
 
   return (
     <DefaultLayout>
@@ -111,7 +110,6 @@ export default function MembersList() {
           </Button>
         </div>
       </section>
-
       {isLoading ? (
         <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
           <Spinner />

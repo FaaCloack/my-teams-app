@@ -31,6 +31,12 @@ export default function MembersEdit() {
       });
       navigate(MEMBERS_LIST_PATH);
     },
+    onError: () => {
+      addToast({
+        title: "Member couldn't be updated. Please try again",
+        color: "danger",
+      });
+    },
   });
 
   const { mutate: deleteMember } = useMutation({
@@ -41,6 +47,12 @@ export default function MembersEdit() {
         color: "success",
       });
       navigate(MEMBERS_LIST_PATH);
+    },
+    onError: () => {
+      addToast({
+        title: "Member couldn't be deleted. Please try again",
+        color: "danger",
+      });
     },
   });
 

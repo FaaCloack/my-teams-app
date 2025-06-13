@@ -24,6 +24,12 @@ export default function MembersAdd() {
       });
       navigate(MEMBERS_LIST_PATH);
     },
+    onError: () => {
+      addToast({
+        title: "Member couldn't be added. Please try again",
+        color: "danger",
+      });
+    },
   });
 
   const handleSaveMember = (formData: MemberFormValues) => {
