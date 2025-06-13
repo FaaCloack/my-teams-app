@@ -7,7 +7,7 @@ from teams.models import Team
 class Member(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     lastname = models.CharField(max_length=100, blank=False, null=False)
-    email = models.CharField(max_length=100, blank=False, null=False)
+    email = models.CharField(max_length=100, blank=False, null=False, unique=True)
     phone = models.CharField(max_length=100, blank=False, null=False)
     location = models.CharField(
         max_length=5,
