@@ -18,12 +18,14 @@ import { Member, MemberRole } from "@/types/members";
 
 const ADMIN_ROLE = "Admin";
 
-function formatMemberName(name: string, role: MemberRole) {
+function formatMemberName(name: string, lastname: string, role: MemberRole) {
+  const completeName = `${name} ${lastname}`;
+
   if (role.name === ADMIN_ROLE) {
-    return `${name} (${role.name.toLowerCase()})`;
+    return `${completeName} (${role.name.toLowerCase()})`;
   }
 
-  return name;
+  return completeName;
 }
 
 function MemberDescription({ email, phone }: { email: string; phone: string }) {
@@ -72,7 +74,11 @@ function MembersTable({
                     phone={member.phone}
                   />
                 }
-                name={formatMemberName(member.name, member.role)}
+                name={formatMemberName(
+                  member.name,
+                  member.lastname,
+                  member.role
+                )}
               />
             </TableCell>
           </TableRow>
