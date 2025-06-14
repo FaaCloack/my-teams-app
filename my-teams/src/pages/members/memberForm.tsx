@@ -34,7 +34,7 @@ export default function MemberForm({
       }
       onSubmit={onSubmit}
     >
-      {({ handleChange, setFieldValue, values, isSubmitting }) => (
+      {({ handleChange, setFieldValue, values }) => (
         <Form className="w-full max-w-xs flex flex-col gap-4">
           <Input
             isRequired
@@ -103,12 +103,7 @@ export default function MemberForm({
                 Delete
               </Button>
             )}
-            <Button
-              className="flex-1"
-              color="primary"
-              disabled={isSubmitting}
-              type="submit"
-            >
+            <Button className="flex-1" color="primary" type="submit">
               Save
             </Button>
           </div>
